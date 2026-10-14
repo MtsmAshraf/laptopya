@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900">
+  <rect width="1200" height="900" fill="#313131"/>
+  <rect x="200" y="300" width="800" height="450" rx="8" fill="#1a1a1a"/>
+  <rect x="220" y="320" width="760" height="410" rx="4" fill="#cb0f0e" opacity="0.15"/>
+  <text x="600" y="560" text-anchor="middle" font-family="sans-serif" font-size="48" fill="#f8f6f2" opacity="0.6">LAPTOPYA</text>
+</svg>
