@@ -141,7 +141,7 @@ export function CategoryGrid() {
               className="group relative block h-[280px] md:h-auto md:aspect-square border border-brand-line overflow-hidden"
             >
               <Image 
-                src="/images/Workstation-Laptops.png" 
+                src="/images/Workstation-Laptops.webp" 
                 alt="Workstation laptops" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
