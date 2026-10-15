@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import AppLink from '@/components/ui/AppLink';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories } from '@/data/categories';
 import { brands } from '@/data/brands';
@@ -24,7 +24,7 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
               <ul className="space-y-2">
                 {categories.map((c) => (
                   <li key={c.slug}>
-                    <Link
+                    <AppLink
                       href={`/shop/${c.slug}`}
                       className="flex items-baseline justify-between group"
                     >
@@ -32,7 +32,7 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
                         {c.name}
                       </span>
                       <span className="font-mono text-xs text-brand-muted">{c.count}</span>
-                    </Link>
+                    </AppLink>
                   </li>
                 ))}
               </ul>
@@ -44,7 +44,7 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
               <ul className="space-y-2">
                 {brands.map((b) => (
                   <li key={b.slug}>
-                    <Link
+                    <AppLink
                       href={`/brands/${b.slug}`}
                       className="flex items-baseline justify-between group"
                     >
@@ -52,7 +52,7 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
                         {b.name}
                       </span>
                       <span className="font-mono text-xs text-brand-muted link-underline">View</span>
-                    </Link>
+                    </AppLink>
                   </li>
                 ))}
               </ul>
@@ -62,7 +62,7 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
                 Featured
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <Link
+                <AppLink
                   href="/product/asus-rog-strix-g16-2025"
                   className="group relative aspect-[4/3] bg-brand-ink overflow-hidden"
                 >
@@ -73,8 +73,8 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
                     <div className="font-display text-display-md mt-1">ROG Strix G16</div>
                     <div className="text-sm mt-2 opacity-80">From $2,499</div>
                   </div>
-                </Link>
-                <Link
+                </AppLink>
+                <AppLink
                   href="/product/apple-macbook-pro-16-m4-max"
                   className="group relative aspect-[4/3] bg-brand-red overflow-hidden"
                 >
@@ -85,7 +85,7 @@ export function MegaMenu({ open, onMouseEnter }: { open: boolean; onMouseEnter: 
                     <div className="font-display text-display-md mt-1">MacBook Pro 16"</div>
                     <div className="text-sm mt-2 opacity-80">From $3,499</div>
                   </div>
-                </Link>
+                </AppLink>
               </div>
             </div>
           </div>

@@ -2,21 +2,20 @@ import { Reveal } from '@/components/ui/Reveal';
 import { reviews } from '@/data/reviews';
 import { products } from '@/data/products';
 import { timeAgo } from '@/lib/utils';
+import { getTranslations } from 'next-intl/server';
 
-export function CustomerReviews() {
+export async function CustomerReviews({ locale }: { locale: string }) {
+  const t = await getTranslations({ locale, namespace: 'Reviews' });
   const list = reviews.slice(0, 6);
+  
   return (
     <section className="border-b border-brand-line py-20 md:py-28">
       <div className="container-page">
         <Reveal>
-          <div className="flex items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
             <div>
-              <div className="text-xs font-mono uppercase tracking-[0.2em] text-brand-red mb-4">
-                · Customer reviews
-              </div>
-              <h2 className="font-display text-display-lg max-w-2xl">
-                From people who actually use them.
-              </h2>
+              <div className="text-xs font-mono uppercase tracking-[0.2em] text-brand-red mb-4">{t('tagline')}</div>
+              <h2 className="font-display text-display-lg max-w-2xl leading-tight">{t('title')}</h2>
             </div>
           </div>
         </Reveal>
@@ -30,13 +29,12 @@ export function CustomerReviews() {
                     <span className="font-display text-display-sm">{r.rating.toFixed(1)}★</span>
                     <span className="text-xs font-mono text-brand-muted">{timeAgo(r.date)}</span>
                   </div>
-                  <blockquote className="mt-4 text-body-md flex-1">
-                    "{r.body}"
-                  </blockquote>
+                  <blockquote className="mt-4 text-body-md flex-1 leading-relaxed">"{r.body}"</blockquote>
                   <figcaption className="mt-6 pt-4 border-t border-brand-line">
-                    <div className="font-display text-display-sm">{r.title}</div>
+                    <div className="font-display text-display-sm leading-tight">{r.title}</div>
                     <div className="text-xs font-mono text-brand-muted mt-1">
                       {r.author} · {p?.name ?? 'Laptopya customer'}
+                      {r.verified && <span className="ms-2 text-brand-red"> · {t('verified')}</span>}
                     </div>
                   </figcaption>
                 </figure>

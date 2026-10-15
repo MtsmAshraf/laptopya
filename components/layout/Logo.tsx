@@ -3,6 +3,7 @@ export function Logo({ className = '' }: { className?: string }) {
     <a
       href="/"
       aria-label="Laptopya home"
+      dir="ltr" // Forces the logo to always be Left-to-Right
       className={`inline-flex items-baseline select-none ${className}`}
     >
       <span className="font-display font-bold tracking-tight text-brand-charcoal dark:text-brand-ink">

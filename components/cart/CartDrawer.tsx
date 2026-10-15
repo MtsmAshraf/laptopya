@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import AppLink from '@/components/ui/AppLink';
 import Image from 'next/image';
 import { Sheet } from '@/components/ui/Sheet';
 import { Button } from '@/components/ui/Button';
@@ -46,10 +46,10 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
           </div>
           <div className="flex gap-2">
             <Button variant="ghost"  className="flex-1">
-              <Link href="/cart">View cart</Link>
+              <AppLink href="/cart">View cart</AppLink>
             </Button>
             <Button variant="primary"  className="flex-1">
-              <Link href="/checkout">Checkout</Link>
+              <AppLink href="/checkout">Checkout</AppLink>
             </Button>
           </div>
         </div>
@@ -62,7 +62,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
             Browse our collection and add something you love.
           </p>
           <Button >
-            <Link href="/shop">Start shopping</Link>
+            <AppLink href="/shop">Start shopping</AppLink>
           </Button>
         </div>
       ) : (
@@ -76,9 +76,9 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 <div className="text-xs font-mono uppercase tracking-widest text-brand-muted">
                   {product.brand}
                 </div>
-                <Link href={`/product/${product.slug}`} onClick={onClose} className="font-display text-display-sm link-underline text-start">
+                <AppLink href={`/product/${product.slug}`} onClick={onClose} className="font-display text-display-sm link-underline text-start">
                   {product.name}
-                </Link>
+                </AppLink>
                 <div className="text-xs font-mono text-brand-muted mt-1">
                   {variant.ram}GB · {variant.storage >= 1000 ? `${variant.storage / 1000}TB` : `${variant.storage}GB`}
                 </div>

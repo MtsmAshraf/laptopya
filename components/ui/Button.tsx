@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, AnchorHTMLAttributes, forwardRef, ReactNode } from 'react';
-import Link from 'next/link';
+import AppLink from '@/components/ui/AppLink';
 import { cn } from '@/lib/utils';
 
 type ButtonVariant = 'primary' | 'ghost' | 'red' | 'link';
@@ -33,14 +33,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     if (href) {
       const anchorProps = props as AnchorHTMLAttributes<HTMLAnchorElement>;
       return (
-        <Link 
+        <AppLink 
           href={href} 
           className={classes} 
           {...anchorProps}
           ref={ref as React.Ref<HTMLAnchorElement>}
         >
           {children}
-        </Link>
+        </AppLink>
       );
     }
 

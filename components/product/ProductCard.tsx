@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import AppLink from '@/components/ui/AppLink';
 import { motion } from 'framer-motion';
 import type { Product } from '@/types';
 import { ProductImage } from './ProductImage';
@@ -26,7 +26,7 @@ export function ProductCard({ p, index = 0 }: { p: Product; index?: number }) {
       transition={{ duration: 0.5, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
       className="group relative flex flex-col"
     >
-      <Link
+      <AppLink
         href={`/product/${p.slug}`}
         className="relative block aspect-[4/3] bg-brand-line/30 overflow-hidden"
       >
@@ -36,7 +36,7 @@ export function ProductCard({ p, index = 0 }: { p: Product; index?: number }) {
           {p.isBestSeller && <Badge tone="ink">Best seller</Badge>}
           {p.condition === 'open-box' && <Badge tone="muted">Open box</Badge>}
         </div>
-      </Link>
+      </AppLink>
 
       <div className="mt-4 flex flex-col gap-2">
         <div className="flex items-baseline justify-between gap-2">
@@ -60,11 +60,11 @@ export function ProductCard({ p, index = 0 }: { p: Product; index?: number }) {
             </button>
           </div>
         </div>
-        <Link href={`/product/${p.slug}`}>
+        <AppLink href={`/product/${p.slug}`}>
           <h3 className="font-display text-display-sm group-hover:text-brand-red transition-colors">
             {p.name}
           </h3>
-        </Link>
+        </AppLink>
         <div className="flex items-baseline gap-2">
           <span className="font-mono text-sm">
             {formatPrice(range.min)}

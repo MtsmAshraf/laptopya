@@ -1,11 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+
+const config = {
   darkMode: ['class'],
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './lib/**/*.{js,ts,jsx,tsx,mdx}',
-    './data/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './lib/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
@@ -18,11 +17,11 @@ module.exports = {
           muted: 'rgb(var(--brand-muted) / <alpha-value>)',
           line: 'rgb(var(--brand-line) / <alpha-value>)',
         },
-      },
-      fontFamily: {
-        display: ['var(--font-display)', 'ui-sans-serif', 'system-ui'],
-        body: ['var(--font-body)', 'ui-sans-serif', 'system-ui'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+      }, fontFamily: {
+        display: ['var(--font-display)', 'var(--font-arabic)', 'ui-sans-serif', 'system-ui'],
+        body: ['var(--font-body)', 'var(--font-arabic)', 'ui-sans-serif', 'system-ui'],
+        mono: ['var(--font-mono)', 'var(--font-arabic)', 'ui-monospace', 'monospace'], // <-- ADDED ARABIC FALLBACK
+        arabic: ['var(--font-arabic)', 'ui-sans-serif', 'system-ui'],
       },
       fontSize: {
         'display-xl': ['clamp(3.25rem, 6vw + 1rem, 7.5rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
@@ -70,3 +69,4 @@ module.exports = {
   },
   plugins: [],
 };
+export default config;

@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand */
+  --brand-red: 203 15 14;
+  --brand-charcoal: 49 49 49;
+
+  /* Light theme */
+  --brand-ink: 18 18 18;
+  --brand-paper: 248 246 242;
+  --brand-muted: 120 118 112;
+  --brand-line: 220 216 208;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* Radius */
+  --radius-hair: 2px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui;
+  --font-body: 'Inter Tight', 'Cairo', ui-sans-serif, system-ui;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-arabic: 'Cairo', ui-sans-serif, system-ui;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-med: 320ms;
+  --dur-slow: 640ms;
+}
+
+.dark {
+  --brand-ink: 240 238 232;
+  --brand-paper: 18 18 18;
+  --brand-muted: 150 148 142;
+  --brand-line: 42 42 42;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: rgb(var(--brand-paper));
+  color: rgb(var(--brand-ink));
+  font-family: var(--font-body);
+  font-feature-settings: 'ss01', 'cv11';
+}
+/* Automatic font switching based on direction */
+html[dir="ltr"] body {
+  font-family: var(--font-body), ui-sans-serif, system-ui;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic), ui-sans-serif, system-ui;
+}
+
+/* CRITICAL FIX: Override display font in RTL so headings use Cairo too */
+html[dir="rtl"] {
+  --font-display: var(--font-arabic);
+  --font-body: var(--font-arabic);
+}
+
+/* Automatic font switching based on direction */
+html[dir="ltr"] body {
+  font-family: var(--font-body), ui-sans-serif, system-ui;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic), ui-sans-serif, system-ui;
+}
+
+/* CRITICAL FIX: Override all fonts in RTL so everything uses Cairo */
+html[dir="rtl"] {
+  --font-display: var(--font-arabic);
+  --font-body: var(--font-arabic);
+  --font-mono: var(--font-arabic); 
+}
+
+/* Subtle paper grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.dark body::before {
+  opacity: 0.08;
+  mix-blend-mode: screen;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--brand-red));
+  outline-offset: 3px;
+  border-radius: var(--radius-hair);
+}
+
+::selection {
+  background: rgb(var(--brand-red));
+  color: rgb(var(--brand-paper));
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--brand-line));
+  border-radius: 999px;
+  border: 2px solid rgb(var(--brand-paper));
+}
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--brand-muted)); }
+
+.hairline {
+  border-block-start: 1px solid rgb(var(--brand-line));
+}
+
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.grid-editorial {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding-inline: 1.25rem;
+  border-radius: var(--radius-hair);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: rgb(var(--brand-ink));
+  color: rgb(var(--brand-paper));
+}
+.btn-primary:hover { background: rgb(var(--brand-red)); }
+.btn-ghost {
+  background: transparent;
+  color: rgb(var(--brand-ink));
+  border: 1px solid rgb(var(--brand-line));
+}
+.btn-ghost:hover { border-color: rgb(var(--brand-ink)); }
+.btn-red {
+  background: rgb(var(--brand-red));
+  color: rgb(var(--brand-paper));
+}
+.btn-red:hover { background: rgb(var(--brand-ink)); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgb(var(--brand-line));
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  background: rgb(var(--brand-paper));
+  color: rgb(var(--brand-ink));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 100vw;
+}
+
+.container-page {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   FIX: KILL INTERNAL SCROLLBARS & FIX RTL
+   ========================================= */
+
+/* 1. Force all sections and main containers to NEVER show internal scrollbars */
+section, 
+section > div, 
+.container-page,
+main {
+  overflow: visible !important;
+}
+
+/* 2. Only allow scrolling on the body and specific drawers/menus */
+body, 
+[class*="overflow-y-auto"], 
+[class*="overflow-auto"] {
+  overflow: auto !important;
+}
+
+/* 3. Fix RTL main scrollbar overlapping dark backgrounds */
+html[dir="rtl"] {
+  scrollbar-gutter: stable;
+}
+
+/* 4. Ensure images never force width */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
