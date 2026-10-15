@@ -1,18 +1,21 @@
+import Image from 'next/image';
+
 export function Logo({ className = '' }: { className?: string }) {
   return (
     <a
       href="/"
       aria-label="Laptopya home"
-      dir="ltr" // Forces the logo to always be Left-to-Right
-      className={`inline-flex items-baseline select-none ${className}`}
+      dir="ltr"
+      className={`inline-flex items-center select-none ${className}`}
     >
-      <span className="font-display font-bold tracking-tight text-brand-charcoal dark:text-brand-ink">
-        Lapto
-      </span>
-      <span className="font-display font-bold tracking-tight text-brand-red">pya</span>
-      <span className="hidden sm:inline ms-1 font-mono text-[0.625rem] tracking-widest text-brand-muted align-middle">
-        ®
-      </span>
+      <Image
+        src="/images/logo.webp"
+        alt="Laptopya"
+        width={120}
+        height={40}
+        className="h-8 w-auto md:h-10"
+        priority
+      />
     </a>
   );
 }
